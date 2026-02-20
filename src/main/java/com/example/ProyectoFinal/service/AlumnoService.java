@@ -3,7 +3,7 @@ package com.example.ProyectoFinal.service;
 import com.example.ProyectoFinal.entity.Alumno;
 import com.example.ProyectoFinal.exception.ResourceNotFoundException;
 import com.example.ProyectoFinal.repository.AlumnoRepository;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -16,11 +16,15 @@ import java.util.List;
  * Actúa como intermediario entre el controlador y el repositorio
  */
 @Service
-@RequiredArgsConstructor
 @Transactional
 public class AlumnoService {
 
     private final AlumnoRepository alumnoRepository;
+
+    @Autowired
+    public AlumnoService(AlumnoRepository alumnoRepository) {
+        this.alumnoRepository = alumnoRepository;
+    }
 
     /**
      * Obtiene todos los alumnos registrados en el sistema

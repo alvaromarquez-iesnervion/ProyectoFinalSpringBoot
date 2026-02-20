@@ -11,7 +11,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -29,12 +29,16 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/api/alumnos")
-@RequiredArgsConstructor
 @Tag(name = "Alumnos", description = "API para gestión de alumnos")
 @SecurityRequirement(name = "basicAuth")
 public class AlumnoController {
 
     private final AlumnoService alumnoService;
+
+    @Autowired
+    public AlumnoController(AlumnoService alumnoService) {
+        this.alumnoService = alumnoService;
+    }
 
     /**
      * Obtiene todos los alumnos sin paginación

@@ -3,9 +3,6 @@ package com.example.ProyectoFinal.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
@@ -15,9 +12,6 @@ import java.time.LocalDate;
  */
 @Entity
 @Table(name = "alumnos")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class Alumno {
 
     /**
@@ -51,6 +45,70 @@ public class Alumno {
      */
     @Column(name = "fecha_registro", nullable = false)
     private LocalDate fechaRegistro;
+
+    // -------------------------
+    // Constructores
+    // -------------------------
+
+    public Alumno() {
+    }
+
+    public Alumno(Long id, String nombre, String email, LocalDate fechaRegistro) {
+        this.id = id;
+        this.nombre = nombre;
+        this.email = email;
+        this.fechaRegistro = fechaRegistro;
+    }
+
+    // -------------------------
+    // Getters y Setters
+    // -------------------------
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public LocalDate getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public void setFechaRegistro(LocalDate fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
+    }
+
+    // -------------------------
+    // toString
+    // -------------------------
+
+    @Override
+    public String toString() {
+        return "Alumno{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", email='" + email + '\'' +
+                ", fechaRegistro=" + fechaRegistro +
+                '}';
+    }
 
     /**
      * Método que se ejecuta automáticamente antes de persistir la entidad
